@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>all books</title>
+    </head>
+    <style>
+        body{
+            background-color: rgb(118, 184, 82);
+        }
+        input{
+            border: 0px;
+            font-size: 14px;
+            padding: 4px;
+            margin: 5px;
+            max-width: 180px;
+            border-radius: 8px;
+            background-color: rgb(223, 223, 223);
+        }
+        input[type="submit"]{
+            font-size: 13px;
+            padding: 5px;
+            background-color : rgb(53, 136, 60);
+            color: white;
+            width: 70px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        table{
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            background-color : rgb(53, 136, 60);
+            padding: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        h2{
+            color: white;
+        }
+        form{
+            color: white;
+        }
+    </style>
+
+    <body>
+        <form>
+            <input type="text" name="q" value="<%=q %>">
+            <input type="submit" value="search"> <br>
+        </form>
+        <table>
+            <tr>
+                <th>BookID</th>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+                <th>Author</th>
+                <th></th>
+                <th>Action</th>
+            </tr>
+
+            <% for (let i of filteredBooks ) { %>
+                <tr>
+                    <td>
+                        <%= i.Id %>
+                    </td>
+                    <td></td>
+                    <td>
+                        <%= i.Name %>
+                    </td>
+                    <td></td>
+                    <td>
+                        <%= i.Author %>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a href="/updatebook?Id=<%= i.Id %> ">Edit</a>
+                        <a href="/deletebook?Id=<%= i.Id %> ">Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+        <form action="/addbook" method="post">
+            <h2>Add a New Book</h2>
+            Name: <input type="text" name="Name"> <br>
+            Author: <input type="text" name="Author"> <br>
+            <input type="submit" value="add">
+        </form>
+        <a href="/addbook">add new book</a>
+    </body>
+
+</html>
